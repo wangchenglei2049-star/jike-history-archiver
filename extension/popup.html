@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: system-ui, sans-serif; width: 300px; margin: 12px; font-size: 13px; color: #222; }
+  h1 { font-size: 15px; margin: 0 0 8px; }
+  label { display: block; margin: 8px 0 2px; color: #555; }
+  input { width: 100%; box-sizing: border-box; padding: 5px 6px; border: 1px solid #ccc; border-radius: 4px; }
+  .row { display: flex; gap: 6px; margin-top: 12px; }
+  button { flex: 1; padding: 7px 0; border: 0; border-radius: 4px; cursor: pointer; font-size: 13px; }
+  #start { background: #f5c518; }
+  #stop { background: #eee; }
+  #clear { background: #fff; color: #b00; flex: 0 0 64px; }
+  #status { margin-top: 12px; background: #f7f7f7; border-radius: 4px; padding: 8px; min-height: 34px; white-space: pre-wrap; word-break: break-all; }
+  .hint { color: #888; margin-top: 8px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<h1>即刻历史抓取</h1>
+<label>只抓比这个 Post ID 更旧的（留空 = 从最新开始全量）</label>
+<input id="floor" placeholder="例如 6123456789abcdef01234567">
+<label>每页间隔（毫秒，最小 1000）</label>
+<input id="delay" type="number" value="2500" min="1000" step="100">
+<div class="row">
+  <button id="start">开始 / 续跑</button>
+  <button id="stop">停止</button>
+  <button id="clear">清进度</button>
+</div>
+<div id="status">状态读取中…</div>
+<div class="hint">在即刻个人主页打开本弹窗再点开始。令牌过期（401）时刷新页面再点「开始 / 续跑」即可断点继续。抓完的 JSON 可按 docs/WORKFLOW.md 合并归档（例如导入 Notion）。</div>
+<script src="popup.js"></script>
+</body>
+</html>
